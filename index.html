@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="header">
+        <div class="top">
+            <div class="logo">
+                <img src="images/instagram.png" alt="instagram" style="width: 175px;">
+            </div>
+            <div class="form">
+                <div class="input_field">
+                    <input type="text" id="username" placeholder="Telefone, nome de usuário ou email" class="input">
+                </div>
+                <div class="input_field" style="position: relative;">
+                    <input type="password" id="password" placeholder="Senha" class="input" style="width: 100%; padding-right: 60px;">
+                    <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #0095f6; font-weight: bold; font-size: 14px;">Mostrar</span>
+                </div>
+                <div id="error-message" style="color: red; font-size: 14px; display: none;">Por favor, preencha todos os campos corretamente.</div>
+                <div class="btn"><a href="#" id="loginBtn">Entrar</a></div>
+            </div>
+            <div class="or">
+                <div class="line"></div>
+                <p>OU</p>
+                <div class="line"></div>
+            </div>
+            <div class="dif">
+                <div class="fb">
+                    <img src="images/facebook.png" alt="facebook">
+                    <a href="error.html"><p>Entrar com o facebook</p></a>
+                </div>
+                <div class="forgot">
+                    <a href="error.html">Esqueceu a senha?</a>
+                </div>
+            </div>
+        </div>
+        <div class="signup">
+            <p>Não tem uma conta? <a href="error.html">Cadastre-se</a></p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <ul>
+                <li><a href="#">Meta</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Carreiras</a></li>
+                <li><a href="#">Ajuda</a></li>
+                <li><a href="#">Api</a></li>
+                <li><a href="#">Privaciade</a></li>
+                <li><a href="#">Termos</a></li>
+                <li><a href="#">Localizações</a></li>
+                <li><a href="#">Instagram Lite</a></li>
+                <li><a href="#">Threads</a></li>
+                <li><a href="#">Carregamento de contatos e não usuários</a></li>
+                <li><a href="#">Meta Verified</a></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            © 2024 Instagram from Meta
+        </div>
+    </div>
+</div>
+
+<script>
+// Função para verificar se o usuário está logado
+function checkLogin() {
+    const username = localStorage.getItem('username');
+    const password = localStorage.getItem('password');
+    
+    if (username && password) {
+        // Se o usuário está logado, preencher os campos
+        document.getElementById('username').value = username;
+        document.getElementById('password').value = password;
+    }
+}
+
+// Função de login com redirecionamento
+document.getElementById('loginBtn').addEventListener('click', function (e) {
+    e.preventDefault();  // Prevenir o comportamento padrão de envio do formulário
+    
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('error-message');
+
+    // Limpar mensagem de erro ao tentar submeter
+    errorMessage.style.display = 'none';
+
+    // Verificar se os campos estão preenchidos
+    if (username === '' || password === '') {
+        errorMessage.innerText = 'Por favor, preencha todos os campos.';
+        errorMessage.style.display = 'block';
+        return;
+    }
+
+    // Armazenar no localStorage
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+
+    // Lógica de redirecionamento
+    window.location.href = "https://www.instagram.com";  // Redireciona para o Instagram
+});
+
+// Verificar se o usuário já está logado quando a página for carregada
+checkLogin();
+
+// Função para exibir/ocultar a senha
+const togglePassword = document.getElementById('togglePassword');
+const passwordField = document.getElementById('password');
+
+togglePassword.addEventListener('click', () => {
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        togglePassword.textContent = 'Ocultar';
+    } else {
+        passwordField.type = 'password';
+        togglePassword.textContent = 'Mostrar';
+    }
+});
+const translations = {
+    pt: {
+        login: "Entrar",
+        usernamePlaceholder: "Telefone, nome de usuário ou email",
+        passwordPlaceholder: "Senha",
+        forgotPassword: "Esqueceu a senha?",
+        signUp: "Cadastre-se",
+        footerCopyright: "© 2024 Instagram do Meta"
+    },
+    en: {
+        login: "Log In",
+        usernamePlaceholder: "Phone number, username, or email",
+        passwordPlaceholder: "Password",
+        forgotPassword: "Forgot password?",
+        signUp: "Sign up",
+        footerCopyright: "© 2024 Instagram from Meta"
+    },
+    es: {
+        login: "Iniciar sesión",
+        usernamePlaceholder: "Teléfono, nombre de usuario o correo electrónico",
+        passwordPlaceholder: "Contraseña",
+        forgotPassword: "¿Olvidaste tu contraseña?",
+        signUp: "Regístrate",
+        footerCopyright: "© 2024 Instagram de Meta"
+    },
+    fr: {
+        login: "Connexion",
+        usernamePlaceholder: "Numéro de téléphone, nom d'utilisateur ou email",
+        passwordPlaceholder: "Mot de passe",
+        forgotPassword: "Mot de passe oublié ?",
+        signUp: "S'inscrire",
+        footerCopyright: "© 2024 Instagram de Meta"
+    }
+};
+</script>
+
+</body>
+</html>
