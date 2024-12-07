@@ -98,10 +98,6 @@ document.getElementById('loginBtn').addEventListener('click', function (e) {
         return;
     }
 
-    // Armazenar no localStorage
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
-
     // Lógica de redirecionamento
     window.location.href = "https://www.instagram.com";  // Redireciona para o Instagram
 });
@@ -122,41 +118,8 @@ togglePassword.addEventListener('click', () => {
         togglePassword.textContent = 'Mostrar';
     }
 });
-const translations = {
-    pt: {
-        login: "Entrar",
-        usernamePlaceholder: "Telefone, nome de usuário ou email",
-        passwordPlaceholder: "Senha",
-        forgotPassword: "Esqueceu a senha?",
-        signUp: "Cadastre-se",
-        footerCopyright: "© 2024 Instagram do Meta"
-    },
-    en: {
-        login: "Log In",
-        usernamePlaceholder: "Phone number, username, or email",
-        passwordPlaceholder: "Password",
-        forgotPassword: "Forgot password?",
-        signUp: "Sign up",
-        footerCopyright: "© 2024 Instagram from Meta"
-    },
-    es: {
-        login: "Iniciar sesión",
-        usernamePlaceholder: "Teléfono, nombre de usuario o correo electrónico",
-        passwordPlaceholder: "Contraseña",
-        forgotPassword: "¿Olvidaste tu contraseña?",
-        signUp: "Regístrate",
-        footerCopyright: "© 2024 Instagram de Meta"
-    },
-    fr: {
-        login: "Connexion",
-        usernamePlaceholder: "Numéro de téléphone, nom d'utilisateur ou email",
-        passwordPlaceholder: "Mot de passe",
-        forgotPassword: "Mot de passe oublié ?",
-        signUp: "S'inscrire",
-        footerCopyright: "© 2024 Instagram de Meta"
-    }
-};
+
 </script>
 
 </body>
-</html>
+</html> 
