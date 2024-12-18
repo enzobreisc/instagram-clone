@@ -2,10 +2,6 @@ Clone do Instagram
 Este é um projeto acadêmico para simular um clone do Instagram, desenvolvido para aprender conceitos de backend utilizando Node.js e SQLite.
 
 2. Tecnologias Usadas
-Liste as tecnologias e ferramentas que você utilizou no desenvolvimento da API, banco de dados e no front-end (se aplicável).
-
-markdown
-Copiar código
 ## Tecnologias
 - **Backend**: Node.js, Express
 - **Banco de Dados**: SQLite
